@@ -1,0 +1,33 @@
+
+<div class="container">
+  <h1>TODO</h1>
+  <hr>
+  <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">TASK</label>
+      <input type="text" class="form-control" id="task" aria-describedby="emailHelp" placeholder="Enter task" ngModel name="task" required>
+      <small *ngIf="taskForm.invalid && taskForm.dirty" id="emailHelp" class="form-text text-danger">Required filed</small>
+    </div>
+    <button  [disabled]="taskForm.invalid" type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+  </form>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Task</th>
+      <th scope="col">Completed</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of taskArray;index as i;">
+      <th scope="row">{{t.taskName}}</th>
+      <td><input (change)="onCheck(i)" type="checkbox" id="myCheckBox" aria-label="Checkbox for following text input">
+      </td>
+      <button type="button" class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
